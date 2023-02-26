@@ -1,92 +1,95 @@
 <?php
 
+    session_start();
+    if (!isset($_SESSION['username'])) {
+        header("location: login.php");
+    }
+
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
    
-    $type = $_POST['Container_Type'];
-    $number = $_POST['Container_Number'];
-    $shelf = $_POST['shelf'];
-    $box = $_POST['box'];
-    $name = $_POST['name'];
-    $label = $_POST['label'];
-    $reference = $_POST['reference'];
-    $stock = $_POST['stock'];
-    $link = $_POST['link'];
+    $type = $_REQUEST['Container_Type'];
+    $number = $_REQUEST['Container_Number'];
+    $shelf = $_REQUEST['shelf'];
+    $box = $_REQUEST['box'];
+    $name = $_REQUEST['name'];
+    $label = $_REQUEST['label'];
+    $reference = $_REQUEST['reference'];
+    $stock = $_REQUEST['stock'];
+    $link = $_REQUEST['link'];
     
-    if ((is_int($stock)) and (is_int($shelf)) and (is_int($box))){
 
-        $host = "localhost";
-        $user = "AdminPHP";
-        $pass = "1234_dcBA";
-        $dbname = "mydb";
+    $host = "localhost";
+    $user = "AdminPHP";
+    $pass = "1234_dcBA";
+    $dbname = "mydb";
 
-        $conn = mysqli_connect($host, $user, $pass, $dbname);
-        if (!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
-
-        // Check if the Placement Number already exists in the database
-
-        $sql = "SELECT * FROM Placement WHERE Number='$number' AND Type='$type'";
-        $result = mysqli_query($conn, $sql);
-
-        if (mysqli_num_rows($result) > 0) {
-
-            // Check if the Placement has that number of shelfs and containers
-
-            // Retrieve Placement ID
-            $sql = "SELECT idPlacement FROM Placement WHERE Number='$number' AND Type='$type'";
-            $id_placement = mysqli_query($conn, $sql);
-            $row = mysqli_fetch_array($id_placement);
-            $id_placement = $row["idPlacement"];
-            
-            // Determine the Partition ID from that Placement
-            $sql = "SELECT Partition_type_idPartition_type FROM Placement_has_Partition_type WHERE Placement_idPlacement='$id_placement'";
-            $id_partition = mysqli_query($conn, $sql);
-            $row = mysqli_fetch_array($id_partition);
-            $id_partition = $row["Partition_type_idPartition_type"];
-
-            // Retrieve shelf and box number
-
-            $sql = "SELECT Shelves FROM Partition_type WHERE idPartition_type ='$id_partition'";
-            $shelf_check = mysqli_query($conn, $sql);
-            $row = mysqli_fetch_array($shelf_check);
-            $shelf_check = $row["Shelves"];
-
-
-            $sql = "SELECT Box FROM Partition_type WHERE idPartition_type ='$id_partition'";
-            $box_check = mysqli_query($conn, $sql);
-            $row = mysqli_fetch_array($box_check);
-            $box_check = $row["Box"];
-
-
-            if (($shelf <= $shelf_check) and ($box <= $box_check)) {
-
-                // Unique ID for the reagent
-                $id_reagents = uniqid('placement');
-
-                $sql = "INSERT INTO Reagents (idReagents, Name, Label, Reference, Stock, Shelf, Box, Link, User_Email, Placement_idPlacement) VALUES ('$id_reagents','$name', '$label','$reference','$stock','$shelf','$box','$link', 'example@gmail.com','$id_placement')";
-                
-                if (mysqli_query($conn, $sql)) {
-
-                echo "<script>alert('The addition was successful!');</script>";
-
-            }
-
-            mysqli_close($conn);
-
-
-            } else {
-                echo "<script>alert('The number of the shelf/box cannot be bigger than the one it has');</script>";
-            }
-
-        
-        } else {
-            echo "<script>alert('The selected Placement does not exist');</script>";
-        }
-    }else{
-        echo "<script>alert('Shelf, Box and Stock must be integers');</script>";
+    $conn = mysqli_connect($host, $user, $pass, $dbname);
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
     }
+
+    // Check if the Placement Number already exists in the database
+
+    $sql = "SELECT * FROM Placement WHERE Number='$number' AND Type='$type'";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+
+        // Check if the Placement has that number of shelfs and containers
+
+        // Retrieve Placement ID
+        $sql = "SELECT idPlacement FROM Placement WHERE Number='$number' AND Type='$type'";
+        $id_placement = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_array($id_placement);
+        $id_placement = $row["idPlacement"];
+        
+        // Determine the Partition ID from that Placement
+        $sql = "SELECT Partition_type_idPartition_type FROM Placement_has_Partition_type WHERE Placement_idPlacement='$id_placement'";
+        $id_partition = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_array($id_partition);
+        $id_partition = $row["Partition_type_idPartition_type"];
+
+        // Retrieve shelf and box number
+
+        $sql = "SELECT Shelves FROM Partition_type WHERE idPartition_type ='$id_partition'";
+        $shelf_check = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_array($shelf_check);
+        $shelf_check = $row["Shelves"];
+
+
+        $sql = "SELECT Box FROM Partition_type WHERE idPartition_type ='$id_partition'";
+        $box_check = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_array($box_check);
+        $box_check = $row["Box"];
+
+
+        if (($shelf <= $shelf_check) and ($box <= $box_check)) {
+
+            // Unique ID for the reagent
+            $id_reagents = uniqid('reagent');
+
+            $sql = "INSERT INTO Reagents (idReagents, Name, Label, Reference, Stock, Shelf, Box, Link, User_Email, Placement_idPlacement) VALUES ('$id_reagents','$name', '$label','$reference','$stock','$shelf','$box','$link', 'example@gmail.com','$id_placement')";
+            
+            if (mysqli_query($conn, $sql)) {
+
+            echo "<script>alert('The addition was successful!');</script>";
+
+        }
+
+        mysqli_close($conn);
+
+
+        } else {
+            echo "<script>alert('The number of the shelf/box cannot be bigger than the one it has');</script>";
+        }
+
+    
+    } else {
+        echo "<script>alert('The selected Placement does not exist');</script>";
+    }
+
 }
+
 
 ?>
 
@@ -120,7 +123,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#services">Log out </a></li>
+                    <li class="nav-item"><a class="nav-link" href="logout.php">Log out </a></li>
                 </ul>
             </div>
         </div>

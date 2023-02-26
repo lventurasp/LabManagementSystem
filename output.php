@@ -1,5 +1,11 @@
 <?php
 
+
+session_start();
+if (!isset($_SESSION['username'])) {
+    header("location: login.php");
+}
+
 //Take data , if empty back to front page
 
 if (!isset($_GET['id'])) {
@@ -72,7 +78,7 @@ $sql = "SELECT Number FROM Placement WHERE idPlacement='$id_container'";
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#services">Log out </a></li>
+                    <li class="nav-item"><a class="nav-link" href="logout.php">Log out </a></li>
                 </ul>
             </div>
         </div>

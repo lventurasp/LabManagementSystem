@@ -1,3 +1,12 @@
+<?php
+
+session_start();
+if (!isset($_SESSION['username'])) {
+    header("location: login.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,7 +65,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#services">Log out </a></li>
+                    <li class="nav-item"><a class="nav-link" href="logout.php">Log out </a></li>
                 </ul>
             </div>
         </div>
@@ -131,7 +140,7 @@
             }
 
             // Query the database
-            $sql = "SELECT Name, Label, Reference, Link FROM Reagents WHERE " . $search . " = '$value'";
+            $sql = "SELECT Name, Label, Reference, Link, idReagents FROM Reagents WHERE " . $search . " = '$value'";
             $result = mysqli_query($conn, $sql);
 
             // Check if there are any results
@@ -139,7 +148,7 @@
 
                 echo "<table><tr><th>Name</th><th>Label</th><th>Reference</th><th>Manufacturer's Link</th></tr>";
                 while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>" . $row["Name"] . "</td><td>" . $row["Label"] . "</td><td>" . $row["Reference"] . "</td><td><a href='" . $row["Link"] . "'>" . $row["Link"] . "</a></td></tr>";
+                echo "<tr><td><a href=\"output.php?id=" . $row["idReagents"] . "\">". $row["Name"] . "</a></td><td>" . $row["Label"] . "</td><td>" . $row["Reference"] . "</td><td><a href='" . $row["Link"] . "'>" . $row["Link"] . "</a></td></tr>";
                 }
                 echo "</table>";
 

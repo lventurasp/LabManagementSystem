@@ -25,7 +25,7 @@ $result = mysqli_query($conn, $sql);
 // Si el nombre de usuario y la contraseña coinciden, inicie la sesión y redirija al usuario a una página restringida
 if (mysqli_num_rows($result) == 1) {
     $_SESSION['username'] = $username;
-    header("location: choose_options.html");
+    header("location: choose_options.php");
 } else {
     // Mostrar un mensaje de error
     $error_message = "Nombre de usuario o contraseña incorrectos";
