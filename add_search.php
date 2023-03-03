@@ -4,6 +4,13 @@
     if (!isset($_SESSION['username'])) {
         header("location: login.php");
     }
+    if (!isset($_SESSION['privilege_type']) || ($_SESSION['privilege_type'] != 'read and write reagents' && $_SESSION['privilege_type'] != 'build placements')) {
+    $error_message = "You don't have permissions to acces here";
+    $_SESSION['error_message'] = $error_message;
+    header("location: choose_options.php");
+    }
+
+  $name = $_SESSION['name'];
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
    
@@ -123,6 +130,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#">Welcome, <?php echo $name; ?> </a></li>
                     <li class="nav-item"><a class="nav-link" href="logout.php">Log out </a></li>
                 </ul>
             </div>

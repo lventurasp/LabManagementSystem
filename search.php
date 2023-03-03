@@ -5,6 +5,8 @@ if (!isset($_SESSION['username'])) {
     header("location: login.php");
 }
 
+$name = $_SESSION['name'];
+
 ?>
 
 <!DOCTYPE html>
@@ -65,6 +67,7 @@ if (!isset($_SESSION['username'])) {
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#">Welcome, <?php echo $name; ?> </a></li>
                     <li class="nav-item"><a class="nav-link" href="logout.php">Log out </a></li>
                 </ul>
             </div>
@@ -109,6 +112,14 @@ if (!isset($_SESSION['username'])) {
             </div>
         </div>  
         </form>
+        <?php if (isset($_SESSION['message_ok'])): ?>
+    <div class="alert alert-success"><?php echo $_SESSION['message_ok']; ?></div>
+    <?php unset($_SESSION['message_ok']); ?>
+<?php elseif (isset($_SESSION['message_error'])): ?>
+    <div class="alert alert-danger"><?php echo $_SESSION['message_error']; ?></div>
+    <?php unset($_SESSION['message_error']); ?>
+<?php endif; ?>
+        
     </header>
     <!-- Footer-->
     <footer class="footer py-4">

@@ -12,8 +12,13 @@ if (!isset($_GET['id'])) {
     header('Location: search.php');
 }
 
+$email = $_SESSION['username'];
+$name_user = $_SESSION['name'];
+
 // Retrieve the ID from the query parameter
 $id = $_GET['id'];
+$_SESSION['id'] = $id;
+$priviledge = $_SESSION['privilege_type'];
 
 // Retrieve the row data from the database
 $host = "localhost";
@@ -48,6 +53,12 @@ $sql = "SELECT Number FROM Placement WHERE idPlacement='$id_container'";
         $container = mysqli_query($conn, $sql);
         $row = mysqli_fetch_array($container);
         $container = $row["Number"];
+        
+        
+// For cheking if the user is the owner of the reagent
+$query = "SELECT User_Email FROM Reagents WHERE idReagents='$id'";
+$result2 = mysqli_query($conn, $query);
+$reagent_user_email = mysqli_fetch_assoc($result2)['User_Email'];
 
 ?>
 
@@ -78,6 +89,7 @@ $sql = "SELECT Number FROM Placement WHERE idPlacement='$id_container'";
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#">Welcome, <?php echo $name_user; ?> </a></li>
                     <li class="nav-item"><a class="nav-link" href="logout.php">Log out </a></li>
                 </ul>
             </div>
@@ -95,7 +107,7 @@ $sql = "SELECT Number FROM Placement WHERE idPlacement='$id_container'";
                 </div>
                 <div class= "container mt-2">
                     <div class="square">
-                        <form name="MainForm" action="output.php" method="GET" enctype="multipart/form-data">
+                        <form name="MainForm" action="update.php" method="POST" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="row">
                                     <div class="form-group">
@@ -132,11 +144,26 @@ $sql = "SELECT Number FROM Placement WHERE idPlacement='$id_container'";
                         </div>
                     </div>
                 </div>
-                <div class="text-center">
-                    <p>
-                        <button type='submit' class="btn btn-primary" href="output.htm">Edit</button>
-                    </p>
-                </div>
+                <?php
+if ($priviledge != 'read reagents') {
+    if ($email != $reagent_user_email) {
+        echo '<div class="alert alert-danger" role="alert" style="margin-top: 20px;">
+                  This user does not have permission to edit this reagent.
+              </div>';
+    } else {
+        echo '<div class="text-center">
+                  <p>
+                      <button type="submit" class="btn btn-primary">Edit</button>
+                  </p>
+              </div>';
+    }
+} else {
+    echo '<div class="alert alert-warning" role="alert" style="margin-top: 20px;">
+              You do not have permission to edit reagents.
+          </div>';
+}
+?>
+
             </div>
             </form>
         </div>  

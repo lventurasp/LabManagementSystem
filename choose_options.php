@@ -7,6 +7,70 @@ if (!isset($_SESSION['username'])) {
 
 ?>
 
+<?php
+
+// Recibir los datos del formulario de inicio de sesión
+$username = $_POST['username'];
+$password = $_POST['password'];
+
+// Conectar a la base de datos
+$host = "localhost";
+$user = "AdminPHP";
+$pass = "1234_dcBA";
+$dbname = "mydb";
+
+$conn = mysqli_connect($host, $user, $pass, $dbname);
+
+if (!$conn) {
+    die("Conexión fallida: " . mysqli_connect_error());
+
+};    
+
+// Obtener el nombre del usuario a partir del nombre de usuario
+$username2 = $_SESSION['username'];
+$sql = "SELECT name FROM User WHERE Email='$username2'";
+$result = mysqli_query($conn, $sql);
+
+if (!$result) {
+    die("Error en la consulta: " . mysqli_error($conn));
+}
+
+$name = mysqli_fetch_assoc($result)['name'];
+$_SESSION['name'] = $name;
+
+// Obtener privilegios
+$sql = "SELECT Priviledge.Priviledge_type
+        FROM User
+        JOIN User_has_Priviledge ON User.Email = User_has_Priviledge.User_Email
+        JOIN Priviledge ON User_has_Priviledge.Priviledge_Priviledge = Priviledge.Priviledge
+        WHERE User.Email = '" . $username2 . "';";
+
+$result = mysqli_query($conn, $sql);
+
+if (!$result) {
+    die("Error en la consulta: " . mysqli_error($conn));
+}
+
+$row = mysqli_fetch_assoc($result);
+
+$privilege_type = $row['Priviledge_type'];
+
+$_SESSION['privilege_type'] = $privilege_type; 
+
+mysqli_free_result($result);
+
+
+mysqli_close($conn);
+  
+  
+
+
+if (isset($_SESSION['error_message'])) {
+    $error_message = $_SESSION['error_message'];;
+    unset($_SESSION['error_message']);
+}  
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,6 +101,7 @@ if (!isset($_SESSION['username'])) {
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#">Welcome, <?php echo $name; ?> </a></li>
                     <li class="nav-item"><a class="nav-link" href="logout.php">Log out </a></li>
                 </ul>
             </div>
@@ -65,6 +130,9 @@ if (!isset($_SESSION['username'])) {
                             <p>
                                 <a href="add_search.php"><button type='priviledge' class="btn btn-primary" href=>ADD A NEW REAGENT</button></a>
                             </p>
+                            <?php if (isset($error_message)): ?>
+    <div class="alert alert-danger"><?php echo $error_message; ?></div>
+<?php endif; ?>
                         </div>
                     </div>  
                 </div>

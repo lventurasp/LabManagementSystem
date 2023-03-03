@@ -77,6 +77,7 @@ mysqli_close($conn);
             <div class="container">
                 <div class="masthead-heading">Welcome to LabManagementSystem</div>
                 <a class="btn btn-primary btn-xl text-uppercase" href="#services">Log in</a>
+                <a class="btn btn-primary btn-xl text-uppercase" href="sign_in.php">Sign in</a>
             </div>
         </header>
         </div>
