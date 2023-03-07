@@ -6,10 +6,7 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 
 // Conectar a la base de datos
-$host = "localhost";
-$user = "AdminPHP";
-$pass = "1234_dcBA";
-$dbname = "mydb";
+require "globals.inc.php";
 
 $conn = mysqli_connect($host, $user, $pass, $dbname);
 
