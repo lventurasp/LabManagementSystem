@@ -1,6 +1,8 @@
 <?php
 
     session_start();
+    require "globals.inc.php";
+
     if (!isset($_SESSION['username'])) {
         header("location: login.php");
     }
@@ -23,12 +25,6 @@
     $reference = $_REQUEST['reference'];
     $stock = $_REQUEST['stock'];
     $link = $_REQUEST['link'];
-    
-
-    $host = "localhost";
-    $user = "AdminPHP";
-    $pass = "1234_dcBA";
-    $dbname = "mydb";
 
     $conn = mysqli_connect($host, $user, $pass, $dbname);
     if (!$conn) {

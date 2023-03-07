@@ -2,6 +2,7 @@
 
 
 session_start();
+require "globals.inc.php";
 if (!isset($_SESSION['username'])) {
     header("location: login.php");
 }
@@ -20,11 +21,6 @@ $id = $_GET['id'];
 $_SESSION['id'] = $id;
 $priviledge = $_SESSION['privilege_type'];
 
-// Retrieve the row data from the database
-$host = "localhost";
-$user = "AdminPHP";
-$pass = "1234_dcBA";
-$dbname = "mydb";
 
 $conn = mysqli_connect($host, $user, $pass, $dbname);
 if (!$conn) {

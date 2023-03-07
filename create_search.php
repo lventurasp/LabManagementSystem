@@ -1,6 +1,7 @@
 <?php
 
     session_start();
+    require "globals.inc.php";
     if (!isset($_SESSION['username'])) {
         header("location: login.php");
     }
@@ -24,11 +25,6 @@
         // Display a pop-up to the user if the value already exists in the database
         echo "<script>alert('Shelves and Boxes cannot be 0');</script>";
         } else {
-
-        $host = "localhost";
-        $user = "AdminPHP";
-        $pass = "1234_dcBA";
-        $dbname = "mydb";
 
         $id_placement = uniqid('placement');
         $id_partition = uniqid('partition');

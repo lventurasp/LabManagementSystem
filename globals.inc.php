@@ -39,5 +39,15 @@ $rs = mysqli_query($mysqli,"SELECT * from expClasse") or print mysqli_error($mys
 while ($rsF = mysqli_fetch_assoc($rs)) {
     $expClasseArray[$rsF['idExpClasse']] = $rsF['expClasse'];
 }
+
+// Variables needed to connect to the DB
+
+$host = "localhost";
+$user = "AdminPHP";
+$pass = "1234_dcBA";
+$dbname = "mydb";
+
 // Start session to store queries
 session_start();
+
+?>

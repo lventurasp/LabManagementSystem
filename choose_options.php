@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+require "globals.inc.php";
 if (!isset($_SESSION['username'])) {
     header("location: login.php");
 }
@@ -12,12 +13,6 @@ if (!isset($_SESSION['username'])) {
 // Recibir los datos del formulario de inicio de sesión
 $username = $_POST['username'];
 $password = $_POST['password'];
-
-// Conectar a la base de datos
-$host = "localhost";
-$user = "AdminPHP";
-$pass = "1234_dcBA";
-$dbname = "mydb";
 
 $conn = mysqli_connect($host, $user, $pass, $dbname);
 

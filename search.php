@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+require "globals.inc.php";
 if (!isset($_SESSION['username'])) {
     header("location: login.php");
 }
@@ -134,16 +135,13 @@ $name = $_SESSION['name'];
     <div class="table-container">
 
         <?php
+        
+        require "globals.inc.php";
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
             $search = $_REQUEST['search'];
             $value = $_REQUEST['value'];
-            
-            $host = "localhost";
-            $user = "AdminPHP";
-            $pass = "1234_dcBA";
-            $dbname = "mydb";
 
             $conn = mysqli_connect($host, $user, $pass, $dbname);
             if (!$conn) {
