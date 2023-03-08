@@ -82,7 +82,8 @@
     <!--Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="#page-top">LabManagementSystem</a>
+        <img class="img-fluid mb-3 mb-lg-3" src="matraz.png" width="50" height="50" alt="..." />
+            <a class="navbar-brand" href="choose_options.php">LabManagementSystem</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fas fa-bars ms-1"></i>
@@ -96,55 +97,53 @@
         </div>
     </nav>
     <!--Options-->
-    <header class="options">
-            <div class="text-center">
-                <h2 class="options-heading text-uppercase">Options</h2>
-            </div>
+    <header class="choose_options">
+        <form name="MainForm" action="create_search.php" method="POST" enctype="multipart/form-data">
             <div class="row">
-                <div class="col-lg-6">
-                    <div class="priviledge-option">
-                        <h4>Create</h4>
-                    </div>
-                    <div class= "container">
-                        <div class="square">
-                            <form name="MainForm" action="create_search.php" method="POST" enctype="multipart/form-data">
-                                <div class="row">
-                                    <div class="text-center">
-                                        <div class="form-group">
-                                            <label>Container Type</label>
-                                            <select name="Container_Type">
-                                                <option value ="Fridge">Fridge</option>
-                                                <option value ="Freezer">Freezer</option>
-                                                <option value ="Shelf">Shelf</option>
-                                            </select> 
-                                        </div>                          
-                                    </div>
-                                </div>  
-                                <div class="row">
-                                    <div class="text-center">
-                                        <div class="form-group">
-                                            <label>Number of the Placement</label>                  
-                                            <input type="text" name="Container_Number" size="5" value="0">
-                                        </div>
-                                    </div>
-                                </div>  
-                                <div class="row">
-                                    <div class="text-center">
-                                        <div class="form-group">
-                                            <label>Shelves</label>                  
-                                            <input type="text" name="shelves" size="5" value="0">
-                                        </div>
-                                    </div>
-                                </div>  
-                                <div class="row">
-                                    <div class="text-center">
-                                        <div class="form-group">
-                                            <label>Boxes</label>                  
-                                            <input type="text" name="boxes" size="5" value="0" >
-                                        </div>
-                                    </div>
+            <div class="col-lg-4">
+            </div>
+                <div class="col-lg-4">
+                <div class="priviledge-option_read ">
+                    <h3>Create a new container</h3>
+                </div>
+                <div class= "container">
+                    <div class="square">
+                        <div class="row">
+                            <div class="form-group">
+>
+                                <label>Container type</label>
+                                <select name="Container_Type">
+                                    <option value ="Fridge">Fridge</option>
+                                    <option value ="Freezer">Freezer</option>
+                                    <option value ="Shelf">Shelf</option>
+                                </select>
+                            </div> 
+                        </div>                          
+                        <div class="row">
+                            <div class="text-center">
+                                <div class="form-group">
+                                    <label>Number of placement</label>                  
+                                    <input type="text" name="Container_Number" size="4" value="0">
                                 </div>
                             </div>
+                        </div>  
+                        <div class="row">
+                            <div class="text-center">
+                                <div class="form-group">
+                                    <label>Shelves</label>                  
+                                    <input type="text" name="shelves" size="4" value="0">
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="row">
+                            <div class="text-center">
+                                <div class="form-group">
+                                    <label>Boxes</label>                  
+                                    <input type="text" name="boxes" size="4" value="0" >
+                                </div>
+                </div>
+            </div>
+        </div>
                         </div>
                     </div>
  

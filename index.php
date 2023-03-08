@@ -1,44 +1,3 @@
-<?php
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
-
-
-session_start();
-require "globals.inc.php";
-
-// Recibir los datos del formulario de inicio de sesión
-
-
-
-$conn = mysqli_connect($host, $user, $pass, $dbname);
-
-if (!$conn) {
-    die("Conexión fallida: " . mysqli_connect_error());
-}
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
-    $password = md5($_POST['password']);
-    // Verificar si el nombre de usuario y la contraseña existen en la tabla de usuarios
-    $sql = "SELECT * FROM User WHERE Email='$username' AND Password='$password'";
-    $result = mysqli_query($conn, $sql);
-
-// Si el nombre de usuario y la contraseña coinciden, inicie la sesión y redirija al usuario a una página restringida
-if (mysqli_num_rows($result) == 1) {
-    $_SESSION['username'] = $username;
-    header("location: choose_options.php");
-} else {
-    // Mostrar un mensaje de error
-    $error_message = "Nombre de usuario o contraseña incorrectos";
-    
-
- }
-}
-
-mysqli_close($conn);
-
-?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -79,8 +38,7 @@ mysqli_close($conn);
         <!-- Masthead-->
         <header class="masthead">
             <div class="container">
-                <div class="masthead-heading">Welcome to LabManagementSystem <img class="img-fluid mb-3 mb-lg-3" src="matraz.png" width="70" height="70" alt="..." /></div>
-                
+                <div class="masthead-heading">Welcome to LabManagementSystem</div>
                 <a class="btn btn-primary btn-xl text-uppercase" href="#about">About us</a>
             </div>
         </header>
@@ -136,41 +94,38 @@ mysqli_close($conn);
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Log in</h2>
-                       
-                       <form action="login.php" method="post">
+
+                        <form action="login.php" method="post">
                             <label for="username">Email  </label>
-                            <p>
                             <input type="email" id="username" name="username" required size="5" style="width:50%">
-                            </p>
+                            <br><br>
                             <label for="password">Password </label>
-                            <p>
                             <input type="password" id="password" name="password" required size="5" style="width:50%">
-                            </p>
                             <br><br>
                             <input type="submit" value="Send">
                         </form>
-  
-           <?php
-                 if (isset($error_message)) {
-                    echo "<p style='color:red;'>$error_message</p>";
-
-                        }
-                    ?>
-                       
-                            </p>
-                        </form>
-                    <div class="col-lg-8 mx-auto text-center my-5"><p class="large text-muted">Haven't signed yet?</p></div>
-                        <div class="text-center">           
-                        <p>
-                             <a type='Log in' class="btn btn-primary" href="sign_in.php">Sign in</a>
-                    </p>                        
-                    </div>
-
-                </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+                      
+                        <?php
+                        if (isset($error_message)) {
+                           echo "<p style='color:red;'>$error_message</p>";
+                               }
+                           ?>
+                                           
+                                                </p>
+                                            </form>
+                                        <div class="col-lg-8 mx-auto text-center my-5"><p class="large text-muted">Haven't signed yet?</p></div>
+                                            <div class="text-center">           
+                                            <p>
+                                                 <a type='Log in' class="btn btn-primary" href="sign_in.php">Sign in</a>
+                                        </p>                        
+                                        </div>
+                    
+                                    </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                           
        
         <!-- Team-->
         <section class="page-section bg-light" id="team">
@@ -188,10 +143,10 @@ mysqli_close($conn);
                     </div>
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="lau.jpeg" alt="..." />
+                            <img class="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="..." />
                             <h4>Laura</h4>
-                            <a class="btn btn-dark btn-social mx-2" href="https://es.linkedin.com/in/laura-ventura-san-pedro-a847b4233?trk=profile-badge"><i class="fab fa-linkedin-in"></i></a>
-                            </div>
+                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="team-member">

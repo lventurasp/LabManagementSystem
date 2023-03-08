@@ -334,6 +334,8 @@ label {
   display: inline-block;
 }
 
+
+
 label, legend{
   font-size: 1em;
   font-family:  system-ui;
@@ -677,11 +679,12 @@ progress {
 .square {
   width: 100%;
   background-color: aliceblue;
-  padding: 20px;
+  padding: 40px;
   text-align: center;
   border-radius: 10px;
   box-shadow: 2px 2px 10px #888888;
 }
+
 
 .container,
 .container-fluid,
@@ -7642,15 +7645,21 @@ textarea.form-control-lg {
 }
 
 header.choose_options{
-  padding-top: 5rem;
-  padding-bottom: 6rem;
+  padding-top: 10 rem;
+  padding-bottom:10 rem ;
   text-align: center;
   color: #fff;
   background-color: steelblue;
   background-repeat: no-repeat;
-  background-attachment: scroll;
+  background-attachment: fixed;
   background-position: center center;
   background-size: cover;
+  background-size: contain;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  /* Height of the footer*/
+  height: 100%;
 }
 
 header.choose_options .choose_options-heading {
@@ -7664,7 +7673,7 @@ header.choose_options .choose_options-heading {
 @media (min-width: 768px) {
   header.choose_options {
     padding-top: 10rem;
-    padding-bottom: 4rem;
+    padding-bottom: 10rem;
   
   }
   header.choose_options .choose_options-heading {
@@ -7672,7 +7681,7 @@ header.choose_options .choose_options-heading {
     font-weight: 700;
     line-height: 4.5rem;
     margin-bottom: 5rem;
-    margin-top:4rem
+    margin-top:2rem
   }
 
 }
@@ -11405,8 +11414,8 @@ header.masthead .masthead-heading {
 
 
 header.options{
-  padding-top: 5rem;
-  padding-bottom: 6rem;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
   text-align: center;
   color: #fff;
   background-color: steelblue;
@@ -11414,6 +11423,12 @@ header.options{
   background-attachment: scroll;
   background-position: center center;
   background-size: cover;
+  background-size: contain;
+  position: fixed;
+  bottom: 0;
+    width: 100%;
+  /* Height of the footer*/
+  height: 100%;
 }
 
 header.options .options-heading {
@@ -11730,8 +11745,8 @@ header.options .options-heading {
 
 .form-group{
   font-family: system-ui;
-  padding-left: 80px;
-  padding-right: 80px;
+  padding-left: 70px;
+  padding-right: 70px;
 
 
 }
@@ -11798,6 +11813,12 @@ section#contact form#contactForm :-ms-input-placeholder {
   font-size: 0.9rem;
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   background-color:lightsteelblue;
+  position: fixed;
+  padding: 10px 10px 0px 10px;
+  bottom: 0;
+  width: 100%;
+  /* Height of the footer*/
+  height: 150px;
 }
 .separator {
   position: absolute;
@@ -11817,4 +11838,72 @@ section#contact form#contactForm :-ms-input-placeholder {
   width: 5px;
   height: 40%;
   background-color: snow;
+}
+
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: whitesmoke;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+
+section.sign_in{
+  padding-top: 10 rem;
+  padding-bottom:10 rem ;
+  text-align: center;
+  color: black;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+  background-size: contain;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  /* Height of the footer*/
+  height: 100%;
+}
+
+tr {
+  border-bottom: 1px solid #ddd;
+}
+table {
+border-collapse: collapse;
+width: 100%;
+
+}
+
+th, td {
+text-align: left;
+padding: 8px;
+color:  #424949 ;
+}
+
+th {
+background-color: whitesmoke;
+}
+
+tr:nth-child(even) {
+background-color: #e8eaf6;
+}
+
+.table-container {
+position: fixed;
+bottom: 0;
+left: 0;
+width: 100%;
+background-color: black;
+box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }

@@ -89,7 +89,8 @@ if (isset($_SESSION['error_message'])) {
     <!--Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="#page-top">LabManagementSystem</a>
+        <img class="img-fluid mb-3 mb-lg-3" src="matraz.png" width="50" height="50" alt="..." />
+            <a class="navbar-brand" href="login.php#page-top">LabManagementSystem</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fas fa-bars ms-1"></i>
@@ -141,7 +142,6 @@ if (isset($_SESSION['error_message'])) {
                     </div>  
                 </div>
             </div>
-            <div class="row"></div>
             <div class="row"></div>
     </header>
     <!-- Footer-->

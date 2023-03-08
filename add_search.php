@@ -119,7 +119,8 @@
     <!--Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="#page-top">LabManagementSystem</a>
+        <img class="img-fluid mb-3 mb-lg-3" src="matraz.png" width="50" height="50" alt="..." />
+            <a class="navbar-brand" href="choose_options.php#page-top">LabManagementSystem</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fas fa-bars ms-1"></i>
@@ -133,28 +134,23 @@
         </div>
     </nav>
     <!--Options-->
-    <header class="options">
-        <div class="text-center">
-            <h2 class="options-heading text-uppercase">Options</h2>
-        </div>
-        <div class="row">
-            <div class="col-lg-6">
+    <header class="choose_options">
+        <form name="MainForm" action="add_search.php" method="POST" enctype="multipart/form-data">              
+            <div class="row">        
+            <div class="col-lg-12">
                 <div class="priviledge-option">
-                    <h4>Add a Reagent</h4>
+                    <h3>Add a new reagent to the database</h3>
                 </div>
                 <div class= "container">
                     <div class="square">
-                    <form name="MainForm" action="add_search.php" method="POST" enctype="multipart/form-data">
                         <div class="row">
-                            <div class="text-center">
-                                <div class="form-group">
-                                    <label><b>Select the container type</b></label>
-                                    <select name="Container_Type">
-                                        <option value ="Fridge">Fridge</option>
-                                        <option value ="Freezer">Freezer</option>
-                                        <option value ="Shelf">Shelf</option>
-                                    </select> 
-                                </div>
+                            <div class="form-group">
+                                <label><b>Select the container type</b></label>
+                                <select name="Container_Type">
+                                    <option value ="Fridge">Fridge</option>
+                                    <option value ="Freezer">Freezer</option>
+                                    <option value ="Shelf">Shelf</option>
+                                </select> 
                             </div>
                         </div>                          
                         <div class="row">
@@ -173,7 +169,7 @@
                             <div class="text-center">
                                 <div class="form-group">
                                     <label>Name</label>                  
-                                    <input type="text" id="inputbox1" name="name" style="width:100%" size="5" value="e.g CD3 Antibody" onclick="clearInput(this)">
+                                    <input type="text" id="inputbox1" name="name" size="20" placeholder="e.g CD3 Antibody"  style="color: #999" onclick="clearInput(this)">
                                 </div>
                             </div>
                         </div>  
@@ -181,7 +177,7 @@
                             <div class="text-center">
                                 <div class="form-group">
                                     <label>Label</label>                  
-                                    <input type="text" id="inputbox2" name="label" style="width:100%" size="5" value="e.g antibody" onclick="clearInput(this)">
+                                    <input type="text" id="inputbox2" name="label"  size="20" placeholder="e.g antibody" style="color: #999" onclick="clearInput(this)">
                                 </div>
                             </div>
                         </div>  
@@ -189,7 +185,7 @@
                             <div class="text-center">
                                 <div class="form-group">
                                     <label>Reference</label>                  
-                                    <input type="text" id="inputbox3" name="reference" style="width:100%" size="5" value="e.g # 11-0032-82" onclick="clearInput(this)">
+                                    <input type="text" id="inputbox3" name="reference"  size="20" placeholder="e.g # 11-0032-82" style="color: #999" onclick="clearInput(this)">
                                 </div>
                             </div>
                         </div>                    
@@ -197,7 +193,7 @@
                             <div class="text-center">
                                 <div class="form-group">
                                     <label>Stock</label>                  
-                                    <input type="text" id="inputbox4" name="stock" style="width:100%" size="5" value="e.g # 2" onclick="clearInput(this)">
+                                    <input type="text" id="inputbox4" name="stock" size="20" placeholder="e.g # 2" style="color: #999" onclick="clearInput(this)">
                                 </div>
                             </div>
                         </div>  
@@ -205,8 +201,9 @@
                         <div class="row">
                             <div class="text-center">
                                 <div class="form-group">
-                                    <label>Link to Manufacturer's Website</label>                  
-                                    <input type="text" id="inputbox5" name="link" style="width:100%" size="5" value="e.g https://www.thermofisher.com/antibody/product/CD3-Antibody-clone-17A2-Monoclonal/11-0032-82" onclick="clearInput(this)">
+                                    <label>Link to Manufacturer's Website</label> 
+                                    <br></br>                 
+                                    <input type="text" id="inputbox5" name="link" style="width:80%" size="5" placeholder="e.g https://www.thermofisher.com/antibody/product/CD3-Antibody-clone-17A2-Monoclonal/11-0032-82" style="color: #999" onclick="clearInput(this)">
                                 </div>
                             </div>
                         </div>

@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -26,7 +28,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#services">Log in </a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about">About us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#login">Log in </a></li>
                         <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     </ul>
@@ -37,43 +40,93 @@
         <header class="masthead">
             <div class="container">
                 <div class="masthead-heading">Welcome to LabManagementSystem</div>
-                <a class="btn btn-primary btn-xl text-uppercase" href="#services">Log in</a>
+                <a class="btn btn-primary btn-xl text-uppercase" href="#about">About us</a>
             </div>
         </header>
         </div>
-        <!-- Services-->
-        <section class="page-section" id="services">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Log in</h2>
-                        <form name="MainForm" action="searchTest.php" method="POST" enctype="multipart/form-data">
-                            <div class= "form"> 
-                                <label>Email</label>     
-                                    <p>             
-                                        <input type="text" name="email" size="5" style="width:50%">
-                                    </p>
-                                </div>
-                            <div class="form">
-                                <label>Password</label>   
-                                    <p>               
-                                        <input type="password" name="password" size="5" style="width:50%">
-                                    </p>
-                                </div>  
-                            <p>
-                                <a type='Log in' class="btn btn-primary" href="choose_options.html">Submit</a>
-                            </p>
-                        </form>
-                    </div>
-                    <div class="col-lg-8 mx-auto text-center my-5"><p class="large text-muted">Haven't signed yet?</p></div>
-                    <div class="text-center">           
-                    <p>
-                        <a type='Log in' class="btn btn-primary" href="sign_in.html">Sign in</a>
-                    </p>                        
-                    </div>
+        <section class="about-section text-center" id="about">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8">
+                        <h3 class="text-black mb-4">What is LabManagementSystem?</h3>
+                        <p class="text-black-50 ">
+                            LabManagementSystem is a project to help Lab users in organizing their labs on a daily basis. 
+                        </p>
+                        <p class="text-black-50 ">
+                            But... how?
+                        </p>
+                        <p class="text-justify text-black-50">
+                            1. First, the user is registered in this webpage and asigned the appropriate priviledged according to their position in the lab.
+                        </p>
+                        <p class="text-justify text-black-50 ">
+                            2. The three possible priviledges are: create, add and search. 
+                        </p>
+                        <div class="container px-4 px-lg-5">
 
+                        <p class="text-justify text-black-50 ">
+                            - With "create", the users can add a new compartment to the lab (freezer or drawer), specifiyng its boxes and divisions.
+                        </p>
+                        <p class="text-justify text-black-50 ">
+                            - With "add", you can add a new entry to your lab's database specifiyng a reagent, its properties and location in the freezer or drawer. 
+                        </p>
+                        <p class="text-justify text-black-50 ">
+                        - With "search", the users will be able to search for any reagent they may want, so as to know where it is located and the rest of specifications that are previously added.
+                        </p>
+                        </div>
+                        <p class="text-justify text-black-50 ">
+                        3. All the users before registration has the "search" priviledge by default.
+                        </p>                       
+                        <p class="text-justify text-black-50 ">
+                        4. The rest of priviledges are added to the users when they contact with us, so as to guarantee the safety of the data.
+                        </p>
+                    <p class="text-black-50 "> DO YOU WANT TO OUT IN ORDER YOUR LAB? 
+                    </p>
+                    <p class="text-black-50 "> If so...
+                    </p>
+                    <div class="row my-4">
+                        <i class="fas fa-arrow-down fa-5x"></i>
+                    </div>
+                    </div>
                 </div>
             </div>
         </section>
+        <!-- Services-->
+        <section class="page-section" id="login">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Log in</h2>
+
+                        <form action="login.php" method="post">
+                            <label for="username">Email  </label>
+                            <input type="email" id="username" name="username" required size="5" style="width:50%">
+                            <br><br>
+                            <label for="password">Password </label>
+                            <input type="password" id="password" name="password" required size="5" style="width:50%">
+                            <br><br>
+                            <input type="submit" value="Send">
+                        </form>
+                      
+                        <?php
+                        if (isset($error_message)) {
+                           echo "<p style='color:red;'>$error_message</p>";
+                               }
+                           ?>
+                                           
+                                                </p>
+                                            </form>
+                                        <div class="col-lg-8 mx-auto text-center my-5"><p class="large text-muted">Haven't signed yet?</p></div>
+                                            <div class="text-center">           
+                                            <p>
+                                                 <a type='Log in' class="btn btn-primary" href="sign_in.html">Sign in</a>
+                                        </p>                        
+                                        </div>
+                    
+                                    </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                           
        
         <!-- Team-->
         <section class="page-section bg-light" id="team">
@@ -84,10 +137,8 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." />
+                            <img class="mx-auto rounded-circle" src="ale.jpeg" alt="..." />
                             <h4>Alejandro</h4>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Facebook Profile"><i class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
@@ -95,8 +146,6 @@
                         <div class="team-member">
                             <img class="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="..." />
                             <h4>Laura</h4>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Twitter Profile"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Facebook Profile"><i class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
@@ -104,8 +153,6 @@
                         <div class="team-member">
                             <img class="mx-auto rounded-circle" src="assets/img/team/3.jpg" alt="..." />
                             <h4>Javier</h4>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
@@ -117,81 +164,33 @@
         </section>
         <!-- Contact-->
         <section class="page-section" id="contact">
-            <div class="container">
-                <div class="text-center">
+            <div class="container px-4 px-lg-5">
+                <div class="col-md-10 col-lg-8 mx-auto text-center">
                     <h2 class="section-heading text-uppercase">Contact Us</h2>
                 </div>
-                <!-- * * * * * * * * * * * * * * *-->
-                <!-- * * SB Forms Contact Form * *-->
-                <!-- * * * * * * * * * * * * * * *-->
-                <!-- This form is pre-integrated with SB Forms.-->
-                <!-- To make this form functional, sign up at-->
-                <!-- https://startbootstrap.com/solution/contact-forms-->
-                <!-- to get an API token!-->
-                <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                    <div class="row align-items-stretch mb-5">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <!-- Name input-->
-                                <input class="form-control" id="name" type="text" placeholder="Your Name *" data-sb-validations="required" />
-                                <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-                            </div>
-                            <div class="form-group">
-                                <!-- Email address input-->
-                                <input class="form-control" id="email" type="email" placeholder="Your Email *" data-sb-validations="required,email" />
-                                <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                                <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
-                            </div>
-                            <div class="form-group mb-md-0">
-                                <!-- Phone number input-->
-                                <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" data-sb-validations="required" />
-                                <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group form-group-textarea mb-md-0">
-                                <!-- Message input-->
-                                <textarea class="form-control" id="message" placeholder="Your Message *" data-sb-validations="required"></textarea>
-                                <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
+                <div class="row gx-4 gx-lg-5">
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div class="card py-4 h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-map-marked-alt text-primary mb-2"></i>
+                                <h4 class="text-uppercase m-0">University</h4>
+                                <hr class="my-4 mx-auto" />
+                                <div class="small text-black-50"> University of Barcelona, Biology faculty</div>
                             </div>
                         </div>
                     </div>
-                    <!-- Submit success message-->
-                    <!---->
-                    <!-- This is what your users will see when the form-->
-                    <!-- has successfully submitted-->
-                    <div class="d-none" id="submitSuccessMessage">
-                        <div class="text-center text-white mb-3">
-                            <div class="fw-bolder">Form submission successful!</div>
-                            To activate this form, sign up at
-                            <br />
-                            <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                    <div class="col-md-4 mb-3 mb-md-0">
                         </div>
-                    </div>
-                    <!-- Submit error message-->
-                    <!---->
-                    <!-- This is what your users will see when there is-->
-                    <!-- an error submitting the form-->
-                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
-                    <!-- Submit Button-->
-                    <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase disabled" id="submitButton" type="submit">Send Message</button></div>
-                </form>
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div class="card py-4 h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-phone text-primary mb-2"></i>
+                                <h4 class="text-uppercase m-0">Phone number</h4>
+                                <hr class="my-4 mx-auto" />
+                                <div class="small text-black-50">934 02 10 86</div>
+                            </div>
+                        </div>
             </div>
         </section>
-        <!-- Footer-->
-        <footer class="footer py-4">
-            <div class="container">
-                <div class="row align-items-center">
-            </div>
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
 </html>

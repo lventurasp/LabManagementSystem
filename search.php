@@ -17,35 +17,6 @@ $name = $_SESSION['name'];
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LabManagementSystem</title>
 
-            <style>
-            table {
-            border-collapse: collapse;
-            width: 100%;
-            }
-            
-            th, td {
-            text-align: left;
-            padding: 8px;
-            }
-            
-            th {
-            background-color: #ddd;
-            }
-            
-            tr:nth-child(even) {
-            background-color: #f2f2f2;
-            }
-            
-            .table-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #fff;
-            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-            }
-        </style>
-
     <!-- Bootstrap styles -->
     <link href="css/styles.css" rel="stylesheet" />
   
@@ -61,7 +32,8 @@ $name = $_SESSION['name'];
     <!--Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="#page-top">LabManagementSystem</a>
+        <img class="img-fluid mb-3 mb-lg-3" src="matraz.png" width="50" height="50" alt="..." />
+            <a class="navbar-brand" href="choose_options.php#page-top">LabManagementSystem</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fas fa-bars ms-1"></i>
@@ -82,25 +54,20 @@ $name = $_SESSION['name'];
             </div>
                 <div class="col-lg-4">
                 <div class="priviledge-option_read ">
-                    <h4>Search for a reagent</h4>
+                    <h3>Search for a reagent</h3>
                 </div>
                 <div class= "container">
                     <div class="square">
-                            <div class="row">
-                                    <div class="form-group">
-
-                                        <label>What are you looking for?</label>
-
-                                        <select name="search">
-
-                                            <option value ="Name">Name</option>
-                                            <option value ="Label">Label</option>
-                                            <option value ="Reference">Reference</option>
-
-                                        </select>   
-                                        <input type="text" name="value" size="5">  
-                                    </div>
-                                </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label>What are you looking for?</label>
+                                <select name="search">
+                                    <option value ="Name">Name</option>
+                                    <option value ="Label">Label</option>
+                                    <option value ="Reference">Reference</option>
+                                </select>   
+                                <input type="text" name="value" size="5">  
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -113,26 +80,21 @@ $name = $_SESSION['name'];
             </div>
         </div>  
         </form>
-        <?php if (isset($_SESSION['message_ok'])): ?>
-    <div class="alert alert-success"><?php echo $_SESSION['message_ok']; ?></div>
-    <?php unset($_SESSION['message_ok']); ?>
-<?php elseif (isset($_SESSION['message_error'])): ?>
-    <div class="alert alert-danger"><?php echo $_SESSION['message_error']; ?></div>
-    <?php unset($_SESSION['message_error']); ?>
-<?php endif; ?>
+            <?php if (isset($_SESSION['message_ok'])): ?>
+
+        <div class="alert alert-success"><?php echo $_SESSION['message_ok']; ?></div>
+
+        <?php unset($_SESSION['message_ok']); ?>
+
+        <?php elseif (isset($_SESSION['message_error'])): ?>
+
+        <div class="alert alert-danger"><?php echo $_SESSION['message_error']; ?></div>
         
-    </header>
-    <!-- Footer-->
-    <footer class="footer py-4">
-
-        <div class="row">
-            <div class="text-center">
-                <a href="index.html#contact"><button type='contact' class="btn btn-primary">Contact</button></a>
-            </div> 
-        </div>
-    </footer>
-
-    <div class="table-container">
+        <?php unset($_SESSION['message_error']); ?>
+    
+        <?php endif; ?>
+        
+        <div class="container">
 
         <?php
         
@@ -175,6 +137,18 @@ $name = $_SESSION['name'];
     </div>
 
 
+    </header>
+    <!-- Footer-->
+    <footer class="footer py-4">
+
+        <div class="row">
+            <div class="text-center">
+                <a href="login.php#contact"><button type='contact' class="btn btn-primary">Contact</button></a>
+            </div> 
+        </div>
+    </footer>
+
+    
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->

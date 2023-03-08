@@ -1,5 +1,6 @@
 <?php
-
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 
 session_start();
 require "globals.inc.php";
@@ -78,7 +79,8 @@ $reagent_user_email = mysqli_fetch_assoc($result2)['User_Email'];
     <!--Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="#page-top">LabManagementSystem</a>
+        <img class="img-fluid mb-3 mb-lg-3" src="matraz.png" width="50" height="50" alt="..." />
+            <a class="navbar-brand" href="choose_options.php#page-top">LabManagementSystem</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fas fa-bars ms-1"></i>
@@ -92,76 +94,97 @@ $reagent_user_email = mysqli_fetch_assoc($result2)['User_Email'];
         </div>
     </nav>
     <!--Options-->
-    <header class="options">
-        <div class="row">
-            <div class="col-lg-4">
-            </div>
-                <div class="col-lg-4">
+    <header class="choose_options">
+        <form name="MainForm" action="update.php" method="POST" enctype="multipart/form-data">
+            <div class="row">  
+            <div class="col-lg-3"></div>     
+            <div class="col-lg-6">
                 <div class="priviledge-option_read mt-2">
-                    <h4>Search results</h4>
+                    <h3>Search results</h3>
                     <h4 class="subheading_options"><?php echo $name; ?></h4>
                 </div>
-                <div class= "container mt-2">
+                <div class= "container">
                     <div class="square">
-                        <form name="MainForm" action="update.php" method="POST" enctype="multipart/form-data">
-                            <div class="row">
-                                <div class="row">
-                                    <div class="form-group">
-                                        <label>Container</label>                  
-                                        <input type="text" name="o_container" style="width:100%" size="5" value="<?php echo $container; ?>">
-                                    </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <style>
+                                    label {
+                                        display: inline-block;
+                                        text-align: right;
+                                        width:150px;
+                                    }
+                                    </style>
+                                <label>Container</label>                  
+                                <input type="text" name="o_container"  size="20" value="<?php echo $container; ?>">
                                 </div>
+                                </div>    
                                 <div class="row">
-                                    <div class="form-group">
-                                        <label>Shelf number</label>                  
-                                        <input type="text" name="o_shelf" style="width:100%" size="5" value="<?php echo $shelf; ?>">
-                                        <label>Box number</label>                  
-                                        <input type="text" name="o_box" style="width:100%" size="5" value="<?php echo $box; ?>">                                     
-                                    </div>
-                                </div> 
+                            <div class="form-group">
+                                <label>Shelf number</label>                  
+                                <input type="text" name="o_shelf"  size="20" value="<?php echo $shelf; ?>">
                                 <div class="row">
-                                    <div class="form-group">
-                                        <label>Label</label>                  
-                                        <input type="text" name="label" style="width:100%" size="5" value="<?php echo $label; ?>">
-                                    </div>
                                 </div>
-                                <div class="row">
-                                    <div class="form-group">
-                                        <label>Reference</label>                  
-                                        <input type="text" name="reference" style="width:100%" size="5" value="<?php echo $reference; ?>">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group">
-                                        <label>Remaining stock</label>                  
-                                        <input type="text" name="o_stock" style="width:100%" size="5" value="<?php echo $stock; ?>">
-                                    </div>
-                                </div>
+                        </div> 
+                            <div class="form-group">
+                                <label>Box number</label>                  
+                                <input type="text" name="o_box"  size="20" value="<?php echo $box; ?>">                                     
+                            </div>
+                        </div> 
+                        <div class="row">
+                            <div class="form-group">
+                                <label>Label</label>                  
+                                <input type="text" name="label" size="20" value="<?php echo $label; ?>">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label>Reference</label>                  
+                                <input type="text" name="reference"  size="20" value="<?php echo $reference; ?>">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label>Remaining stock </label>                  
+                                <input type="text" name="o_stock"  size="20" value="<?php echo $stock; ?>">
+                            </div>
+                        </div>
                         </div>
                     </div>
-                </div>
-                <?php
-if ($priviledge != 'read reagents') {
-    if ($email != $reagent_user_email) {
-        echo '<div class="alert alert-danger" role="alert" style="margin-top: 20px;">
-                  This user does not have permission to edit this reagent.
-              </div>';
-    } else {
-        echo '<div class="text-center">
-                  <p>
-                      <button type="submit" class="btn btn-primary">Edit</button>
-                  </p>
-              </div>';
-    }
-} else {
-    echo '<div class="alert alert-warning" role="alert" style="margin-top: 20px;">
-              You do not have permission to edit reagents.
-          </div>';
-}
-?>
+                    </div>
+                    </div>
+                    <div class="row">       
 
+                <div class="col-lg-4">
+                </div>
+                <div class="col-lg-4">
+
+
+                <?php
+                    if ($priviledge != 'read reagents') {
+                        if ($email != $reagent_user_email) {
+                            echo '<div class="alert alert-danger" role="alert" style="margin-top: 20px;">
+                                    This user does not have permission to edit this reagent.
+                                </div>';
+                        } else {
+                            echo '<div class="text-center">
+                                    <p>
+                                        <button type="submit" class="btn btn-primary">Edit</button>
+                                    </p>
+                                </div>';
+                        }
+                    } else {
+                        echo '<div class="alert alert-warning" role="alert" style="margin-top: 20px;">
+                                You do not have permission to edit reagents.
+                            </div>';
+                    }
+                    ?>
+
+                </div>
             </div>
-            </form>
+        </div>
+        </div>
+        </div>
+        </form>
         </div>  
     </header>
     <!-- Footer-->

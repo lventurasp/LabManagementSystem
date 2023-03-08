@@ -1,9 +1,12 @@
 <?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 session_start();
 
 // Recibir los datos del formulario de inicio de sesión
-$username = $_POST['username'];
-$password = $_POST['password'];
+//$username = $_POST['username'];
+//$password = $_POST['password'];
 
 // Conectar a la base de datos
 require "globals.inc.php";
@@ -17,7 +20,7 @@ if (!$conn) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Recibir los datos del formulario de registro
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $password = md5($_POST['password']);
     $name = $_POST['name'];
     $surname = $_POST['surname'];
 
@@ -66,14 +69,15 @@ mysqli_close($conn);
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="#page-top">LabManagementSystem</a>
+                <img class="img-fluid mb-3 mb-lg-3" src="matraz.png" width="50" height="50" alt="..." />
+                <a class="navbar-brand" href="login.php#page-top">LabManagementSystem</a>
             </div>
         </nav>
         <!-- Services-->
-        <section class="options">
+        <section class="sign_in">
     <div class="container my-6">
         <div class="text-center">
-            <h1 class="section-heading my" >Sign up</h1>
+            <h1 class="section-heading my" >Sign in</h1>
             <form name="MainForm" action="" method="POST" enctype="multipart/form-data">
                 <div class="form">
                     <label>Email</label>
